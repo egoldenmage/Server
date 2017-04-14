@@ -47,13 +47,12 @@ public class Session {
 	
 	public static void updatePos(String ip, String machineip, String xpos, String ypos) {
 		for (Client c : users) {
-			if (c.ip.indexOf(ip) != -1) {
-				if (c.localip.indexOf(machineip) != -1) {
-					c.x = Integer.parseInt(xpos);
-					c.y = Integer.parseInt(ypos);
-				}
+			if (c.ip.contains(ip)) {
+				c.x = Integer.parseInt(xpos);
+				c.y = Integer.parseInt(ypos);
 			}
 		}
+
 	}
 	
 	public static String getData(String clientIp, String machineip) {

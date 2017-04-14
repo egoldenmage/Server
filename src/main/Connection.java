@@ -9,12 +9,12 @@ import java.net.Socket;
 public class Connection extends Thread {
 	
 	Socket serverSocket;
-	private static String clientIp;
-	private static boolean remove = true;
+	private String clientIp;
+	private boolean remove = true;
 	
 	Connection(Socket socket) {
 		this.serverSocket = socket;
-		clientIp =  serverSocket.getInetAddress().getHostAddress();//sla ip als ID van client op in variabele.
+		clientIp =  serverSocket.getInetAddress().getHostAddress();
 	}
 	
 	public void run() {
@@ -25,6 +25,7 @@ public class Connection extends Thread {
 			while (!serverSocket.isClosed()) {
 				try {
 					data = br.readLine(); //Code "Blockt" hier, totdat er data binnenkomt.
+					clientIp =  serverSocket.getInetAddress().getHostAddress();
 					if (data == null) {  //Als een verbinding beindigtd wordt is de data NULL, break dan
 						break;
 					}
@@ -86,7 +87,7 @@ public class Connection extends Thread {
 		}
 	}
 	
-	private static String extractData(String data, String var) {
+	private String extractData(String data, String var) {
 		return data.substring(data.indexOf(var) + var.length() + 1, data.indexOf("|",(data.indexOf(var) + var.length() + 1)));
 	}	
 	
