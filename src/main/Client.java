@@ -7,6 +7,7 @@ public class Client {
 	
 	public int x;
 	public int y;
+	public double rotation;
 	
 	Client(String ipaddr, String localipaddr) {
 		this.ip = ipaddr;

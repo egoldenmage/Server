@@ -66,7 +66,7 @@ public class Connection extends Thread {
 					} else if (data.indexOf("type:clientdata") != -1) {//er worden gegevens van een client geupdate.
 						for (Session s : Server.sessions) {
 							if (s.username.indexOf(extractData(data, "servername")) != -1) {
-								s.updatePos(clientIp, extractData(data, "machineip"), extractData(data, "playerposx"), extractData(data, "playerposy"));
+								s.updatePos(clientIp, extractData(data, "machineip"), extractData(data, "playerposx"), extractData(data, "playerposy"), extractData(data, "rotation"));
 								pw.println("type:serverdata|" + s.getData(clientIp, extractData(data, "machineip")));
 							}
 						}
